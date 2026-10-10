@@ -406,12 +406,7 @@ const canSave =
 
       {mode === 'review' && imgUrl && (
         <div className="bg-white rounded-2xl border border-[#E2E8E4] p-4">
-        <canvas
-          ref={canvasRef}
-          onClick={onCanvasClick}
-          className="block w-full rounded-xl cursor-crosshair touch-none"
-          style={{ height: 'auto' }}
-        />          <div className="rounded-xl border border-[#E2E8E4] p-4 mb-4">
+                <div className="rounded-xl border border-[#E2E8E4] p-4 mb-4">
             <h2 className="font-semibold text-[#172B21]">Material identification</h2>
             <p className="text-xs text-[#64748B] mt-1">AI results are visual estimates. A photo cannot verify composition, thickness, or internal structure.</p>
             <p className="text-xs text-[#64748B] mt-1">When you scan, the selected image is uploaded to ScrapSmart storage and sent to its configured AI service for analysis.</p>
