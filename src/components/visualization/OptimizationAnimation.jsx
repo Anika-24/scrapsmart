@@ -48,7 +48,11 @@ export default function OptimizationAnimation({ height = 380 }) {
   }, [playing, step, speed, total]);
 
   if (!layout || total === 0) {
+<<<<<<< HEAD
     return <div ref={containerRef} className="flex items-center justify-center text-muted-foreground text-sm" style={{ height }}>Optimize first to watch the placement animation.</div>;
+=======
+    return <div ref={containerRef} className="flex items-center justify-center text-[#94A3B8] text-sm" style={{ height }}>Optimize first to watch the placement animation.</div>;
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
   }
 
   const sheet = layout.sheets[0];
@@ -66,7 +70,11 @@ export default function OptimizationAnimation({ height = 380 }) {
       <div className="flex items-center justify-center" style={{ height }}>
         <svg width={w} height={h}>
           <g transform={`translate(${pad}, ${pad})`}>
+<<<<<<< HEAD
             <rect x={0} y={0} width={sheet.width * scale} height={sheet.height * scale} rx={6} fill="var(--card)" stroke="var(--border)" strokeWidth={1.5} />
+=======
+            <rect x={0} y={0} width={sheet.width * scale} height={sheet.height * scale} rx={6} fill="#E2E8E4" stroke="#94A3B8" strokeWidth={1.5} />
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             {allPlacements.slice(0, step).map((p, i) => {
               const active = i === step - 1;
               return (
@@ -79,18 +87,30 @@ export default function OptimizationAnimation({ height = 380 }) {
                     rx={2}
                     fill={p.color}
                     fillOpacity={active ? 0.95 : 0.7}
+<<<<<<< HEAD
                     stroke={active ? 'var(--primary-hover)' : 'var(--primary-foreground)'}
+=======
+                    stroke={active ? '#123D26' : '#fff'}
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                     strokeWidth={active ? 3 : 1}
                     style={{ transition: 'all 0.3s ease' }}
                   />
                   {p.w * scale > 30 && p.h * scale > 18 && (
+<<<<<<< HEAD
                     <text x={p.x * scale + 4} y={p.y * scale + 12} fontSize={10} fill="var(--primary-foreground)" fontWeight={700}>{p.name}</text>
+=======
+                    <text x={p.x * scale + 4} y={p.y * scale + 12} fontSize={10} fill="#fff" fontWeight={700}>{p.name}</text>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                   )}
                 </g>
               );
             })}
             {activePiece && (
+<<<<<<< HEAD
               <text x={(activePiece.x + activePiece.w / 2) * scale} y={activePiece.y * scale - 6} textAnchor="middle" fontSize={11} fill="var(--foreground)" fontWeight={700}>
+=======
+              <text x={(activePiece.x + activePiece.w / 2) * scale} y={activePiece.y * scale - 6} textAnchor="middle" fontSize={11} fill="#123D26" fontWeight={700}>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 {Math.round(activePiece.w)}×{Math.round(activePiece.h)}mm
               </text>
             )}
@@ -100,6 +120,7 @@ export default function OptimizationAnimation({ height = 380 }) {
 
       {/* Controls */}
       <div className="mt-3 flex items-center gap-2 flex-wrap">
+<<<<<<< HEAD
         <button onClick={() => setPlaying((p) => !p)} className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary-hover">
           {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />} {playing ? 'Pause' : 'Play'}
         </button>
@@ -121,6 +142,29 @@ export default function OptimizationAnimation({ height = 380 }) {
       </div>
 
       <div className="mt-2 text-xs text-muted-foreground bg-background rounded-lg px-3 py-2 min-h-[40px]">
+=======
+        <button onClick={() => setPlaying((p) => !p)} className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#16A34A] text-white text-sm font-semibold hover:bg-[#15803D]">
+          {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />} {playing ? 'Pause' : 'Play'}
+        </button>
+        <button onClick={() => setStep((s) => Math.max(0, s - 1))} className="w-9 h-9 rounded-lg border border-[#E2E8E4] flex items-center justify-center text-[#64748B] hover:bg-[#F4F7F5]"><SkipBack className="w-4 h-4" /></button>
+        <button onClick={() => setStep((s) => Math.min(total, s + 1))} className="w-9 h-9 rounded-lg border border-[#E2E8E4] flex items-center justify-center text-[#64748B] hover:bg-[#F4F7F5]"><SkipForward className="w-4 h-4" /></button>
+        <button onClick={() => { setStep(0); setPlaying(false); }} className="w-9 h-9 rounded-lg border border-[#E2E8E4] flex items-center justify-center text-[#64748B] hover:bg-[#F4F7F5]"><RotateCcw className="w-4 h-4" /></button>
+        <div className="flex items-center gap-1.5 text-xs text-[#64748B]">
+          <Gauge className="w-4 h-4" />
+          {[0.5, 1, 2].map((sp) => (
+            <button key={sp} onClick={() => setSpeed(sp)} className={`px-2 py-1 rounded ${speed === sp ? 'bg-[#DCFCE7] text-[#15803D] font-semibold' : 'hover:bg-[#F4F7F5]'}`}>{sp}x</button>
+          ))}
+        </div>
+        <div className="flex-1 min-w-[120px]">
+          <div className="h-2 rounded-full bg-[#F4F7F5] overflow-hidden">
+            <div className="h-full bg-[#16A34A] transition-all" style={{ width: `${(step / total) * 100}%` }} />
+          </div>
+        </div>
+        <span className="text-xs font-semibold text-[#172B21]">{step} / {total} placed</span>
+      </div>
+
+      <div className="mt-2 text-xs text-[#64748B] bg-[#F4F7F5] rounded-lg px-3 py-2 min-h-[40px]">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
         {step === 0 ? 'Press Play to watch how ScrapSmart places each piece on the sheet.' : EDU[Math.max(0, eduIndex)]}
       </div>
     </div>

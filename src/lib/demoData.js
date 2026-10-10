@@ -33,6 +33,7 @@ export const DEMO_PROJECT = {
     edgeMargin: 10,
   },
   pieces: [
+<<<<<<< HEAD
     { id: 'P1', name: 'Side Panel', width: 720, height: 560, quantity: 7, rotationAllowed: true, color: '#2e7d7a' },
     { id: 'P2', name: 'Top Panel', width: 680, height: 420, quantity: 6, rotationAllowed: true, color: '#2e7d7a' },
     { id: 'P3', name: 'Bottom Shelf', width: 660, height: 380, quantity: 5, rotationAllowed: true, color: '#00555a' },
@@ -40,11 +41,26 @@ export const DEMO_PROJECT = {
     { id: 'P5', name: 'Drawer Front', width: 280, height: 180, quantity: 10, rotationAllowed: true, color: '#2e7d7a' },
     { id: 'P6', name: 'Toe Kick', width: 1200, height: 100, quantity: 2, rotationAllowed: true, color: '#2e7d7a' },
     { id: 'P7', name: 'Corner Block', width: 140, height: 90, quantity: 14, rotationAllowed: true, color: '#00555a' },
+=======
+    { id: 'P1', name: 'Side Panel', width: 720, height: 560, quantity: 7, rotationAllowed: true, color: '#16A34A' },
+    { id: 'P2', name: 'Top Panel', width: 680, height: 420, quantity: 6, rotationAllowed: true, color: '#0EA5E9' },
+    { id: 'P3', name: 'Bottom Shelf', width: 660, height: 380, quantity: 5, rotationAllowed: true, color: '#F59E0B' },
+    { id: 'P4', name: 'Back Panel', width: 600, height: 300, quantity: 4, rotationAllowed: true, color: '#6366F1' },
+    { id: 'P5', name: 'Drawer Front', width: 280, height: 180, quantity: 10, rotationAllowed: true, color: '#EC4899' },
+    { id: 'P6', name: 'Toe Kick', width: 1200, height: 100, quantity: 2, rotationAllowed: true, color: '#14B8A6' },
+    { id: 'P7', name: 'Corner Block', width: 140, height: 90, quantity: 14, rotationAllowed: true, color: '#8B5CF6' },
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
   ],
 };
 
 export const EXAMPLE_PIECES = [
+<<<<<<< HEAD
   { id: 'P1', name: 'Panel A', width: 600, height: 400, quantity: 2, rotationAllowed: true, color: '#2e7d7a' },
   { id: 'P2', name: 'Panel B', width: 450, height: 300, quantity: 3, rotationAllowed: true, color: '#2e7d7a' },
   { id: 'P3', name: 'Bracket', width: 200, height: 150, quantity: 6, rotationAllowed: true, color: '#00555a' },
+=======
+  { id: 'P1', name: 'Panel A', width: 600, height: 400, quantity: 2, rotationAllowed: true, color: '#16A34A' },
+  { id: 'P2', name: 'Panel B', width: 450, height: 300, quantity: 3, rotationAllowed: true, color: '#0EA5E9' },
+  { id: 'P3', name: 'Bracket', width: 200, height: 150, quantity: 6, rotationAllowed: true, color: '#F59E0B' },
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 ];

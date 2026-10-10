@@ -1,8 +1,14 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { ZoomIn, ZoomOut, Maximize, Tag, Ruler, RotateCw } from 'lucide-react';
 import { useProject } from '@/lib/ProjectContext';
+<<<<<<< HEAD
 
 const LEFTOVER_FILL = 'var(--card)';
+=======
+import { fromMm } from '@/lib/geometry';
+
+const LEFTOVER_FILL = '#E2E8E4';
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 
 export default function View2D({ layoutSource = 'layout', height = 420 }) {
   const { layout, baseline, material, selectedInstanceId, setSelectedInstanceId, matDef } = useProject();
@@ -45,7 +51,11 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
 
   if (!source || !sheet) {
     return (
+<<<<<<< HEAD
       <div ref={containerRef} className="material-preserved flex items-center justify-center text-muted-foreground text-sm" style={{ height }}>
+=======
+      <div ref={containerRef} className="flex items-center justify-center text-[#94A3B8] text-sm" style={{ height }}>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
         Run the optimizer to see the cutting layout.
       </div>
     );
@@ -72,6 +82,7 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
   };
 
   return (
+<<<<<<< HEAD
     <div ref={containerRef} className="material-preserved relative w-full" style={{ height }}>
       {/* Toolbar */}
       <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-card/90 backdrop-blur rounded-xl border border-border p-1 shadow-sm">
@@ -81,16 +92,35 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
         <div className="w-px h-5 bg-card" />
         <button onClick={() => setShowLabels((s) => !s)} className={`w-8 h-8 rounded-lg flex items-center justify-center ${showLabels ? 'bg-card text-primary-hover' : 'text-muted-foreground hover:bg-background'}`} title="Toggle labels"><Tag className="w-4 h-4" /></button>
         <button onClick={() => setShowDims((s) => !s)} className={`w-8 h-8 rounded-lg flex items-center justify-center ${showDims ? 'bg-card text-primary-hover' : 'text-muted-foreground hover:bg-background'}`} title="Toggle dimensions"><Ruler className="w-4 h-4" /></button>
+=======
+    <div ref={containerRef} className="relative w-full" style={{ height }}>
+      {/* Toolbar */}
+      <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-white/90 backdrop-blur rounded-xl border border-[#E2E8E4] p-1 shadow-sm">
+        <button onClick={() => setZoom((z) => Math.min(6, z * 1.2))} className="w-8 h-8 rounded-lg hover:bg-[#F4F7F5] flex items-center justify-center text-[#64748B]" title="Zoom in"><ZoomIn className="w-4 h-4" /></button>
+        <button onClick={() => setZoom((z) => Math.max(0.3, z / 1.2))} className="w-8 h-8 rounded-lg hover:bg-[#F4F7F5] flex items-center justify-center text-[#64748B]" title="Zoom out"><ZoomOut className="w-4 h-4" /></button>
+        <button onClick={fitToScreen} className="w-8 h-8 rounded-lg hover:bg-[#F4F7F5] flex items-center justify-center text-[#64748B]" title="Fit to screen"><Maximize className="w-4 h-4" /></button>
+        <div className="w-px h-5 bg-[#E2E8E4]" />
+        <button onClick={() => setShowLabels((s) => !s)} className={`w-8 h-8 rounded-lg flex items-center justify-center ${showLabels ? 'bg-[#DCFCE7] text-[#15803D]' : 'text-[#64748B] hover:bg-[#F4F7F5]'}`} title="Toggle labels"><Tag className="w-4 h-4" /></button>
+        <button onClick={() => setShowDims((s) => !s)} className={`w-8 h-8 rounded-lg flex items-center justify-center ${showDims ? 'bg-[#DCFCE7] text-[#15803D]' : 'text-[#64748B] hover:bg-[#F4F7F5]'}`} title="Toggle dimensions"><Ruler className="w-4 h-4" /></button>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       </div>
 
       {/* Sheet selector */}
       {source.sheets.length > 1 && (
+<<<<<<< HEAD
         <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-card/90 backdrop-blur rounded-xl border border-border p-1 shadow-sm">
+=======
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-white/90 backdrop-blur rounded-xl border border-[#E2E8E4] p-1 shadow-sm">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
           {source.sheets.map((s, i) => (
             <button
               key={i}
               onClick={() => setSheetIdx(i)}
+<<<<<<< HEAD
               className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${i === sheetIdx ? 'bg-primary-hover text-primary-foreground' : 'text-muted-foreground hover:bg-background'}`}
+=======
+              className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${i === sheetIdx ? 'bg-[#123D26] text-white' : 'text-[#64748B] hover:bg-[#F4F7F5]'}`}
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             >
               Sheet {i + 1}
             </button>
@@ -110,7 +140,11 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
         >
           <g transform={`translate(${pad + pan.x}, ${pad + pan.y})`}>
             {/* Sheet background */}
+<<<<<<< HEAD
             <rect x={0} y={0} width={sheet.width * scale} height={sheet.height * scale} rx={6} fill={LEFTOVER_FILL} stroke="var(--border)" strokeWidth={1.5} />
+=======
+            <rect x={0} y={0} width={sheet.width * scale} height={sheet.height * scale} rx={6} fill={LEFTOVER_FILL} stroke="#94A3B8" strokeWidth={1.5} />
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             {/* Margin guide */}
             {material.edgeMargin > 0 && (
               <rect
@@ -119,7 +153,11 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
                 width={(sheet.width - material.edgeMargin * 2) * scale}
                 height={(sheet.height - material.edgeMargin * 2) * scale}
                 fill="none"
+<<<<<<< HEAD
                 stroke="var(--primary)"
+=======
+                stroke="#16A34A"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 strokeWidth={1}
                 strokeDasharray="4 4"
                 opacity={0.5}
@@ -128,7 +166,11 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
             {/* Pieces */}
             {sheet.placements.map((p) => {
               const selected = p.instanceId === selectedInstanceId;
+<<<<<<< HEAD
               const fill = p.color || '#2e7d7a';
+=======
+              const fill = p.color || '#16A34A';
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               return (
                 <g
                   key={p.instanceId}
@@ -144,7 +186,11 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
                     rx={2}
                     fill={fill}
                     fillOpacity={0.78}
+<<<<<<< HEAD
                     stroke={selected ? 'var(--primary-hover)' : 'var(--primary-foreground)'}
+=======
+                    stroke={selected ? '#123D26' : '#ffffff'}
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                     strokeWidth={selected ? 3 : 1.5}
                   />
                   {showLabels && p.w * scale > 28 && p.h * scale > 18 && (
@@ -152,7 +198,11 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
                       x={p.x * scale + 4}
                       y={p.y * scale + 12}
                       fontSize={Math.min(11, Math.max(7, p.h * scale * 0.22))}
+<<<<<<< HEAD
                       fill="var(--primary-foreground)"
+=======
+                      fill="#ffffff"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                       fontWeight={700}
                       style={{ pointerEvents: 'none' }}
                     >
@@ -164,7 +214,11 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
                       x={p.x * scale + 4}
                       y={p.y * scale + p.h * scale - 5}
                       fontSize={Math.min(10, Math.max(6, p.h * scale * 0.18))}
+<<<<<<< HEAD
                       fill="var(--primary-foreground)"
+=======
+                      fill="#ffffff"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                       fillOpacity={0.9}
                       style={{ pointerEvents: 'none' }}
                     >
@@ -173,17 +227,28 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
                   )}
                   {p.rotated && showDims && p.w * scale > 30 && (
                     <g transform={`translate(${(p.x + p.w / 2) * scale}, ${(p.y + p.h / 2) * scale})`}>
+<<<<<<< HEAD
                       <RotateCw className="w-3 h-3 text-primary-foreground" style={{ pointerEvents: 'none' }} />
+=======
+                      <RotateCw className="w-3 h-3 text-white" style={{ pointerEvents: 'none' }} />
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                     </g>
                   )}
                 </g>
               );
             })}
             {/* Sheet dimension labels */}
+<<<<<<< HEAD
             <text x={sheet.width * scale / 2} y={-6} textAnchor="middle" fontSize={11} fill="var(--foreground)" fontWeight={600}>
               {Math.round(sheet.width)} mm
             </text>
             <text x={-12} y={sheet.height * scale / 2} textAnchor="middle" fontSize={11} fill="var(--foreground)" fontWeight={600} transform={`rotate(-90, -12, ${sheet.height * scale / 2})`}>
+=======
+            <text x={sheet.width * scale / 2} y={-6} textAnchor="middle" fontSize={11} fill="#64748B" fontWeight={600}>
+              {Math.round(sheet.width)} mm
+            </text>
+            <text x={-12} y={sheet.height * scale / 2} textAnchor="middle" fontSize={11} fill="#64748B" fontWeight={600} transform={`rotate(-90, -12, ${sheet.height * scale / 2})`}>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               {Math.round(sheet.height)} mm
             </text>
           </g>
@@ -191,10 +256,17 @@ export default function View2D({ layoutSource = 'layout', height = 420 }) {
       </div>
 
       {/* Legend */}
+<<<<<<< HEAD
       <div className="absolute bottom-3 left-3 z-10 flex items-center gap-3 bg-card/90 backdrop-blur rounded-lg border border-border px-3 py-1.5 text-[11px] text-muted-foreground shadow-sm">
         <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded" style={{ background: LEFTOVER_FILL }} /> Leftover / waste</span>
         <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary" /> Placed piece</span>
         {source.unplaced?.length > 0 && <span className="text-muted-foreground font-medium">{source.unplaced.length} unplaced</span>}
+=======
+      <div className="absolute bottom-3 left-3 z-10 flex items-center gap-3 bg-white/90 backdrop-blur rounded-lg border border-[#E2E8E4] px-3 py-1.5 text-[11px] text-[#64748B] shadow-sm">
+        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded" style={{ background: LEFTOVER_FILL }} /> Leftover / waste</span>
+        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-[#16A34A]" /> Placed piece</span>
+        {source.unplaced?.length > 0 && <span className="text-amber-600 font-medium">{source.unplaced.length} unplaced</span>}
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       </div>
     </div>
   );

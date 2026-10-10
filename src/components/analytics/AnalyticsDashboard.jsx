@@ -2,11 +2,16 @@ import React from 'react';
 import { TrendingUp, Percent, Layers, Package, PackageX, DollarSign, PiggyBank, Square } from 'lucide-react';
 import {
   PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis,
+<<<<<<< HEAD
   Tooltip, CartesianGrid,
+=======
+  Tooltip, CartesianGrid, Legend,
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 } from 'recharts';
 import { useProject } from '@/lib/ProjectContext';
 import { areaInUnit } from '@/lib/geometry';
 
+<<<<<<< HEAD
 function MetricCard({ icon: Icon, label, value, sub, tone = 'green' }) {
   const tones = {
     green: 'bg-secondary-accent text-secondary-accent-foreground',
@@ -18,12 +23,30 @@ function MetricCard({ icon: Icon, label, value, sub, tone = 'green' }) {
     <div className="bg-card rounded-2xl border border-border p-4">
       <div className="flex items-center justify-between mb-2">
         <span className="text-xs font-medium text-muted-foreground">{label}</span>
+=======
+function MetricCard({ icon: Icon, label, value, sub, accent = '#16A34A', tone = 'green' }) {
+  const tones = {
+    green: 'bg-[#DCFCE7] text-[#15803D]',
+    amber: 'bg-amber-100 text-amber-700',
+    red: 'bg-red-100 text-[#DC2626]',
+    slate: 'bg-slate-100 text-[#475569]',
+  };
+  return (
+    <div className="bg-white rounded-2xl border border-[#E2E8E4] p-4">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs font-medium text-[#64748B]">{label}</span>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
         <span className={`w-8 h-8 rounded-lg flex items-center justify-center ${tones[tone]}`}>
           <Icon className="w-4 h-4" />
         </span>
       </div>
+<<<<<<< HEAD
       <div className="font-display text-2xl font-bold text-foreground">{value}</div>
       {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
+=======
+      <div className="font-display text-2xl font-bold text-[#172B21]">{value}</div>
+      {sub && <div className="text-xs text-[#94A3B8] mt-0.5">{sub}</div>}
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
     </div>
   );
 }
@@ -38,8 +61,13 @@ export default function AnalyticsDashboard() {
   const areaUnit = u === 'in' ? 'in²' : 'cm²';
 
   const utilizationData = [
+<<<<<<< HEAD
     { name: 'Used', value: Number(s.utilization.toFixed(1)), color: 'var(--primary)' },
     { name: 'Waste', value: Number(s.waste.toFixed(1)), color: 'var(--muted-foreground)' },
+=======
+    { name: 'Used', value: Number(s.utilization.toFixed(1)), color: '#16A34A' },
+    { name: 'Waste', value: Number(s.waste.toFixed(1)), color: '#E2E8E4' },
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
   ];
 
   const beforeAfterUtil = [
@@ -68,23 +96,37 @@ export default function AnalyticsDashboard() {
         <MetricCard icon={TrendingUp} label="Waste" value={`${s.waste.toFixed(1)}%`} tone="amber" />
         <MetricCard icon={Layers} label="Sheets used" value={s.sheetsUsed} sub={`of ${material.sheetQuantity} available`} tone="slate" />
         <MetricCard icon={Package} label="Pieces placed" value={s.placedCount} sub={`of ${s.totalPieces} total`} tone="green" />
+<<<<<<< HEAD
         <MetricCard icon={PackageX} label="Unplaced pieces" value={s.unplacedCount} tone={s.unplacedCount ? 'alert' : 'slate'} />
+=======
+        <MetricCard icon={PackageX} label="Unplaced pieces" value={s.unplacedCount} tone={s.unplacedCount ? 'red' : 'slate'} />
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
         <MetricCard icon={DollarSign} label="Material cost" value={`$${s.totalCost.toFixed(2)}`} sub={`$${material.pricePerSheet} / sheet`} tone="slate" />
         <MetricCard icon={PiggyBank} label="Estimated savings" value={`$${savings.toFixed(2)}`} sub={savedSheets ? `${savedSheets} fewer sheet${savedSheets > 1 ? 's' : ''}` : 'same sheet count'} tone={savings > 0 ? 'green' : 'slate'} />
         <MetricCard icon={Square} label="Leftover area" value={`${areaInUnit(s.leftoverArea, u).toFixed(0)} ${areaUnit}`} sub="geometric" tone="slate" />
       </div>
 
       {savings === 0 && (b?.sheetsUsed || 0) === s.sheetsUsed && (
+<<<<<<< HEAD
         <div className="text-xs text-secondary-accent bg-card border border-border rounded-lg px-3 py-2">
+=======
+        <div className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
           Both layouts use the same number of sheets, so material purchasing savings are $0 — even though packing efficiency improved.
         </div>
       )}
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+<<<<<<< HEAD
         <div className="bg-card rounded-2xl border border-border p-5">
           <h4 className="font-display font-semibold text-foreground mb-1">Utilization</h4>
           <p className="text-xs text-muted-foreground mb-3">Placed area vs. geometric leftover</p>
+=======
+        <div className="bg-white rounded-2xl border border-[#E2E8E4] p-5">
+          <h4 className="font-display font-semibold text-[#172B21] mb-1">Utilization</h4>
+          <p className="text-xs text-[#64748B] mb-3">Placed area vs. geometric leftover</p>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
           <div style={{ height: 200 }}>
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -96,6 +138,7 @@ export default function AnalyticsDashboard() {
             </ResponsiveContainer>
           </div>
           <div className="flex items-center justify-center gap-4 text-xs">
+<<<<<<< HEAD
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-primary" /> Used {s.utilization.toFixed(1)}%</span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-card" /> Waste {s.waste.toFixed(1)}%</span>
           </div>
@@ -112,11 +155,30 @@ export default function AnalyticsDashboard() {
                 <YAxis domain={[0, 100]} tick={{ fontSize: 12, fill: 'var(--muted-foreground)' }} axisLine={false} tickLine={false} unit="%" />
                 <Tooltip formatter={(v) => `${v}%`} />
                 <Bar dataKey="utilization" fill="var(--primary)" radius={[6, 6, 0, 0]} barSize={48} />
+=======
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-[#16A34A]" /> Used {s.utilization.toFixed(1)}%</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-[#E2E8E4]" /> Waste {s.waste.toFixed(1)}%</span>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl border border-[#E2E8E4] p-5">
+          <h4 className="font-display font-semibold text-[#172B21] mb-1">Before / After utilization</h4>
+          <p className="text-xs text-[#64748B] mb-3">Baseline vs. ScrapSmart optimized</p>
+          <div style={{ height: 200 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={beforeAfterUtil}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#F4F7F5" vertical={false} />
+                <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748B' }} axisLine={false} tickLine={false} />
+                <YAxis domain={[0, 100]} tick={{ fontSize: 12, fill: '#64748B' }} axisLine={false} tickLine={false} unit="%" />
+                <Tooltip formatter={(v) => `${v}%`} />
+                <Bar dataKey="utilization" fill="#16A34A" radius={[6, 6, 0, 0]} barSize={48} />
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
+<<<<<<< HEAD
         <div className="bg-card rounded-2xl border border-border p-5">
           <h4 className="font-display font-semibold text-foreground mb-1">Cost comparison</h4>
           <p className="text-xs text-muted-foreground mb-3">Material purchasing cost</p>
@@ -130,12 +192,28 @@ export default function AnalyticsDashboard() {
                 <Bar dataKey="cost" radius={[6, 6, 0, 0]} barSize={48}>
                   <Cell fill="var(--primary-hover)" />
                   <Cell fill="var(--primary)" />
+=======
+        <div className="bg-white rounded-2xl border border-[#E2E8E4] p-5">
+          <h4 className="font-display font-semibold text-[#172B21] mb-1">Cost comparison</h4>
+          <p className="text-xs text-[#64748B] mb-3">Material purchasing cost</p>
+          <div style={{ height: 200 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={costData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#F4F7F5" vertical={false} />
+                <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748B' }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 12, fill: '#64748B' }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} />
+                <Tooltip formatter={(v) => `$${Number(v).toFixed(2)}`} />
+                <Bar dataKey="cost" radius={[6, 6, 0, 0]} barSize={48}>
+                  <Cell fill="#94A3B8" />
+                  <Cell fill="#16A34A" />
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
+<<<<<<< HEAD
         <div className="bg-card rounded-2xl border border-border p-5">
           <h4 className="font-display font-semibold text-foreground mb-1">Sheet usage</h4>
           <p className="text-xs text-muted-foreground mb-3">Sheets required by each method</p>
@@ -149,6 +227,21 @@ export default function AnalyticsDashboard() {
                 <Bar dataKey="sheets" radius={[6, 6, 0, 0]} barSize={48}>
                   <Cell fill="var(--primary-hover)" />
                   <Cell fill="var(--primary)" />
+=======
+        <div className="bg-white rounded-2xl border border-[#E2E8E4] p-5">
+          <h4 className="font-display font-semibold text-[#172B21] mb-1">Sheet usage</h4>
+          <p className="text-xs text-[#64748B] mb-3">Sheets required by each method</p>
+          <div style={{ height: 200 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={sheetData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#F4F7F5" vertical={false} />
+                <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748B' }} axisLine={false} tickLine={false} />
+                <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#64748B' }} axisLine={false} tickLine={false} />
+                <Tooltip />
+                <Bar dataKey="sheets" radius={[6, 6, 0, 0]} barSize={48}>
+                  <Cell fill="#94A3B8" />
+                  <Cell fill="#123D26" />
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

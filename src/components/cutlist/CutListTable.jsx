@@ -2,9 +2,16 @@ import React from 'react';
 import { Plus, Copy, Trash2, Eraser, FileDown, AlertTriangle } from 'lucide-react';
 import { useProject } from '@/lib/ProjectContext';
 import { UNITS, fromMm, toMm, areaInUnit } from '@/lib/geometry';
+<<<<<<< HEAD
 
 const inputCls =
   'w-full px-2 py-1.5 rounded-md border border-border bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition';
+=======
+import { PIECE_COLORS } from '@/lib/materials';
+
+const inputCls =
+  'w-full px-2 py-1.5 rounded-md border border-[#E2E8E4] bg-white text-sm text-[#172B21] focus:outline-none focus:ring-2 focus:ring-[#16A34A]/30 focus:border-[#16A34A] transition';
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 
 export default function CutListTable() {
   const { pieces, addPiece, updatePiece, deletePiece, duplicatePiece, clearPieces, loadExample, material } = useProject();
@@ -23,16 +30,25 @@ export default function CutListTable() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="material-preserved bg-card rounded-2xl border border-border overflow-hidden">
       <div className="flex items-center justify-between p-4 border-b border-border flex-wrap gap-2">
         <div>
           <h3 className="font-display font-bold text-foreground">Cut list</h3>
           <p className="text-xs text-muted-foreground mt-0.5">
+=======
+    <div className="bg-white rounded-2xl border border-[#E2E8E4] overflow-hidden">
+      <div className="flex items-center justify-between p-4 border-b border-[#E2E8E4] flex-wrap gap-2">
+        <div>
+          <h3 className="font-display font-bold text-[#172B21]">Cut list</h3>
+          <p className="text-xs text-[#64748B] mt-0.5">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             {pieces.length} part type{pieces.length !== 1 ? 's' : ''} · {totalPieces} total pieces ·{' '}
             {areaInUnit(totalArea, u).toFixed(0)} {u === 'mm' ? 'cm²' : u === 'cm' ? 'cm²' : 'in²'} required
           </p>
         </div>
         <div className="flex items-center gap-1.5 flex-wrap">
+<<<<<<< HEAD
           <button onClick={() => addPiece()} className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary-hover transition">
             <Plus className="w-3.5 h-3.5" /> Add Piece
           </button>
@@ -40,6 +56,15 @@ export default function CutListTable() {
             <FileDown className="w-3.5 h-3.5" /> Example
           </button>
           <button onClick={clearPieces} disabled={!pieces.length} className="flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg border border-border text-muted-foreground hover:bg-background transition disabled:opacity-40">
+=======
+          <button onClick={() => addPiece()} className="flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-[#16A34A] text-white hover:bg-[#15803D] transition">
+            <Plus className="w-3.5 h-3.5" /> Add Piece
+          </button>
+          <button onClick={loadExample} className="flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg border border-[#E2E8E4] text-[#172B21] hover:bg-[#F4F7F5] transition">
+            <FileDown className="w-3.5 h-3.5" /> Example
+          </button>
+          <button onClick={clearPieces} disabled={!pieces.length} className="flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg border border-[#E2E8E4] text-[#64748B] hover:bg-[#F4F7F5] transition disabled:opacity-40">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             <Eraser className="w-3.5 h-3.5" /> Clear
           </button>
         </div>
@@ -47,7 +72,11 @@ export default function CutListTable() {
 
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
+<<<<<<< HEAD
           <thead className="bg-background text-muted-foreground text-xs uppercase tracking-wide">
+=======
+          <thead className="bg-[#F4F7F5] text-[#64748B] text-xs uppercase tracking-wide">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             <tr>
               <th className="text-left font-semibold px-3 py-2.5">ID</th>
               <th className="text-left font-semibold px-3 py-2.5">Name</th>
@@ -62,16 +91,26 @@ export default function CutListTable() {
           <tbody>
             {pieces.length === 0 && (
               <tr>
+<<<<<<< HEAD
                 <td colSpan={8} className="text-center py-12 text-muted-foreground">
                   No pieces yet. Click <span className="font-semibold text-primary-hover">Add Piece</span> or load an example to begin.
+=======
+                <td colSpan={8} className="text-center py-12 text-[#94A3B8]">
+                  No pieces yet. Click <span className="font-semibold text-[#15803D]">Add Piece</span> or load an example to begin.
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 </td>
               </tr>
             )}
             {pieces.map((p) => {
               const fits = fitsSheet(p);
               return (
+<<<<<<< HEAD
                 <tr key={p.id} className="border-t border-border hover:bg-background/50">
                   <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{p.id}</td>
+=======
+                <tr key={p.id} className="border-t border-[#E2E8E4] hover:bg-[#F4F7F5]/50">
+                  <td className="px-3 py-2 font-mono text-xs text-[#64748B]">{p.id}</td>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                   <td className="px-3 py-2">
                     <input
                       className={inputCls}
@@ -111,7 +150,11 @@ export default function CutListTable() {
                   <td className="px-3 py-2 text-center">
                     <input
                       type="checkbox"
+<<<<<<< HEAD
                       className="w-4 h-4 rounded accent-primary"
+=======
+                      className="w-4 h-4 rounded accent-[#16A34A]"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                       checked={p.rotationAllowed}
                       onChange={(e) => updatePiece(p.id, { rotationAllowed: e.target.checked })}
                     />
@@ -121,15 +164,26 @@ export default function CutListTable() {
                       type="color"
                       value={p.color}
                       onChange={(e) => updatePiece(p.id, { color: e.target.value })}
+<<<<<<< HEAD
                       className="w-7 h-7 rounded cursor-pointer border border-border"
+=======
+                      className="w-7 h-7 rounded cursor-pointer border border-[#E2E8E4]"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                     />
                   </td>
                   <td className="px-3 py-2">
                     <div className="flex items-center justify-end gap-1">
+<<<<<<< HEAD
                       <button onClick={() => duplicatePiece(p.id)} className="w-7 h-7 rounded-md hover:bg-card text-primary-hover flex items-center justify-center" title="Duplicate">
                         <Copy className="w-3.5 h-3.5" />
                       </button>
                       <button onClick={() => deletePiece(p.id)} className="w-7 h-7 rounded-md hover:bg-card text-primary-hover flex items-center justify-center" title="Delete">
+=======
+                      <button onClick={() => duplicatePiece(p.id)} className="w-7 h-7 rounded-md hover:bg-[#DCFCE7] text-[#15803D] flex items-center justify-center" title="Duplicate">
+                        <Copy className="w-3.5 h-3.5" />
+                      </button>
+                      <button onClick={() => deletePiece(p.id)} className="w-7 h-7 rounded-md hover:bg-red-50 text-[#DC2626] flex items-center justify-center" title="Delete">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
@@ -142,7 +196,11 @@ export default function CutListTable() {
       </div>
 
       {pieces.some((p) => !fitsSheet(p)) && (
+<<<<<<< HEAD
         <div className="flex items-center gap-2 px-4 py-2.5 bg-card border-t border-border text-primary-hover text-xs">
+=======
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-amber-50 border-t border-amber-200 text-amber-700 text-xs">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
           <AlertTriangle className="w-4 h-4 shrink-0" />
           Some pieces are larger than the usable sheet area and will be marked unplaced.
         </div>

@@ -106,6 +106,20 @@ export function ProjectProvider({ children }) {
     }, 80);
   }, []);
 
+<<<<<<< HEAD
+=======
+  const resetDemo = useCallback(() => {
+    setProjectName(DEFAULT_PROJECT.name);
+    setMaterial({ ...DEFAULT_PROJECT.material });
+    setPieces([]);
+    setLayout(null);
+    setBaseline(null);
+    setValidation(null);
+    setSelectedInstanceId(null);
+    setStep(1);
+  }, []);
+
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
   const addPiece = useCallback((partial) => {
     setPieces((prev) => [...prev, makePiece(partial)]);
   }, []);
@@ -132,6 +146,7 @@ export function ProjectProvider({ children }) {
     setPieces(EXAMPLE_PIECES.map((p) => ({ ...p })));
   }, []);
 
+<<<<<<< HEAD
   const saveProject = useCallback((name) => {
     const proj = { name, material, pieces, savedAt: new Date().toISOString() };
     const updated = [proj, ...savedProjects.filter((saved) => saved.name?.trim().toLocaleLowerCase() !== name.trim().toLocaleLowerCase())].slice(0, 20);
@@ -140,6 +155,15 @@ export function ProjectProvider({ children }) {
     localStorage.setItem('scrapsmart_projects', JSON.stringify(updated));
     return proj;
   }, [material, pieces, savedProjects]);
+=======
+  const saveProject = useCallback(() => {
+    const proj = { name: projectName, material, pieces, savedAt: new Date().toISOString() };
+    const updated = [proj, ...savedProjects].slice(0, 20);
+    setSavedProjects(updated);
+    localStorage.setItem('scrapsmart_projects', JSON.stringify(updated));
+    return proj;
+  }, [projectName, material, pieces, savedProjects]);
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 
   const openProject = useCallback((proj) => {
     setProjectName(proj.name);
@@ -172,7 +196,11 @@ export function ProjectProvider({ children }) {
       viewMode, setViewMode,
       step, setStep,
       optimizing,
+<<<<<<< HEAD
       runOptimization, loadDemo,
+=======
+      runOptimization, loadDemo, resetDemo,
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       savedProjects, saveProject, openProject, deleteProject,
     }),
     [projectName, material, matDef, pieces, layout, baseline, validation, selectedInstanceId, viewMode, step, optimizing, savedProjects]

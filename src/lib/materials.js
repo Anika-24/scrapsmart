@@ -6,6 +6,7 @@ export const MATERIALS = [
     id: 'plywood',
     name: 'Plywood',
     tagline: 'Layered wood veneer',
+<<<<<<< HEAD
     base: '#e0bb86',
     edge: '#a87440',
     texture: {
@@ -13,6 +14,10 @@ export const MATERIALS = [
       grain: '#b98a56',
       layers: ['#c79a62', '#a87440'],
     },
+=======
+    base: '#C8A06A',
+    edge: '#8B5E34',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
     description:
       'Engineered wood made of thin veneer layers glued together. Strong, lightweight, and ideal for furniture, cabinetry, and structural panels.',
     uses: ['Cabinetry', 'Furniture frames', 'Subflooring', 'Wall panels'],
@@ -26,6 +31,12 @@ export const MATERIALS = [
     safety: 'Wear a dust mask — some adhesives release urea-formaldehyde when cut.',
     // 3D params
     three: {
+<<<<<<< HEAD
+=======
+      kind: 'wood',
+      color: '#C8A06A',
+      edgeColor: '#8B5E34',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       roughness: 0.85,
       metalness: 0.0,
       opacity: 1,
@@ -37,9 +48,14 @@ export const MATERIALS = [
     id: 'mdf',
     name: 'MDF',
     tagline: 'Medium-density fibreboard',
+<<<<<<< HEAD
     base: '#a98660',
     edge: '#8f6b43',
     texture: { type: 'mdf', speckle: '#8f6b43' },
+=======
+    base: '#C9A97A',
+    edge: '#A07A4A',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
     description:
       'Smooth, uniform panel of compressed wood fibres and resin. Machines cleanly and paints beautifully, but is heavy and absorbs moisture.',
     uses: ['Painted cabinets', 'Laser-cut templates', 'Speaker boxes', 'Decorative trim'],
@@ -52,6 +68,12 @@ export const MATERIALS = [
     grain: 'No grain direction — rotation does not affect strength.',
     safety: 'Fine dust is a respiratory irritant. Use a mask and extraction.',
     three: {
+<<<<<<< HEAD
+=======
+      kind: 'mdf',
+      color: '#C9A97A',
+      edgeColor: '#A07A4A',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       roughness: 0.95,
       metalness: 0.0,
       opacity: 1,
@@ -63,9 +85,14 @@ export const MATERIALS = [
     id: 'acrylic',
     name: 'Acrylic',
     tagline: 'Clear cast plastic',
+<<<<<<< HEAD
     base: '#d6f1f7',
     edge: '#6cc3d6',
     texture: { type: 'acrylic', highlight: '#efead8', gradientEnd: '#8fd3e3' },
+=======
+    base: '#7FB7E8',
+    edge: '#BFE0F7',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
     description:
       'Rigid, transparent plastic with a glass-like finish. Cuts cleanly on a laser or fine router; edges can be flame-polished.',
     uses: ['Signage', 'Display cases', 'Light diffusers', 'Guards & shields'],
@@ -78,6 +105,12 @@ export const MATERIALS = [
     grain: 'No grain — rotation is free.',
     safety: 'Ventilate when laser cutting — fumes are harmful.',
     three: {
+<<<<<<< HEAD
+=======
+      kind: 'acrylic',
+      color: '#7FB7E8',
+      edgeColor: '#D6EEFB',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       roughness: 0.05,
       metalness: 0.0,
       opacity: 0.55,
@@ -89,9 +122,14 @@ export const MATERIALS = [
     id: 'cardboard',
     name: 'Cardboard',
     tagline: 'Corrugated kraft board',
+<<<<<<< HEAD
     base: '#c19a6b',
     edge: '#8c6239',
     texture: { type: 'cardboard', flute: '#a67c4e' },
+=======
+    base: '#C9A06A',
+    edge: '#A07A4A',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
     description:
       'Lightweight corrugated kraft paper. Cheap, recyclable, and easy to knife-cut. Used for packaging, prototypes, and templates.',
     uses: ['Packaging', 'Prototyping', 'Templates', 'Signage'],
@@ -104,6 +142,12 @@ export const MATERIALS = [
     grain: 'Flutes run one direction; folding across them is easier than along them.',
     safety: 'Keep dry — loses strength rapidly when wet.',
     three: {
+<<<<<<< HEAD
+=======
+      kind: 'cardboard',
+      color: '#C9A06A',
+      edgeColor: '#8A6A3A',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       roughness: 1.0,
       metalness: 0.0,
       opacity: 1,
@@ -115,9 +159,14 @@ export const MATERIALS = [
     id: 'metal',
     name: 'Metal',
     tagline: 'Brushed aluminium sheet',
+<<<<<<< HEAD
     base: '#cfd4d9',
     edge: '#7b838b',
     texture: { type: 'metal', gradientEnd: '#9aa1a8', brushedLine: '#7b838b' },
+=======
+    base: '#C7CCD1',
+    edge: '#9AA3AB',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
     description:
       'Brushed aluminium sheet — lightweight, corrosion-resistant, and machinable. Used for panels, brackets, and enclosures.',
     uses: ['Enclosures', 'Brackets', 'Face panels', 'Trim'],
@@ -130,6 +179,12 @@ export const MATERIALS = [
     grain: 'No grain — rotation is free. Brushing direction is cosmetic only.',
     safety: 'Edges are sharp after cutting — wear gloves and deburr.',
     three: {
+<<<<<<< HEAD
+=======
+      kind: 'metal',
+      color: '#C7CCD1',
+      edgeColor: '#9AA3AB',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       roughness: 0.35,
       metalness: 1.0,
       opacity: 1,
@@ -145,6 +200,7 @@ export function getMaterial(id) {
   return MATERIAL_MAP[id] || MATERIALS[0];
 }
 
+<<<<<<< HEAD
 export function getMaterialTextureStyle(material) {
   const texture = material.texture;
   switch (texture.type) {
@@ -177,4 +233,10 @@ export function getMaterialTextureStyle(material) {
 export const PIECE_COLORS = [
   '#2e7d7a', '#00555a', '#2e7d7a', '#00555a', '#00555a',
   '#00555a', '#2e7d7a', '#2e7d7a', '#00555a', '#00555a',
+=======
+// A stable palette for piece identification overlays.
+export const PIECE_COLORS = [
+  '#16A34A', '#15803D', '#0EA5E9', '#6366F1', '#F59E0B',
+  '#EF4444', '#EC4899', '#14B8A6', '#8B5CF6', '#F97316',
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 ];

@@ -2,24 +2,41 @@ import React from 'react';
 import { useProject } from '@/lib/ProjectContext';
 import { MATERIALS, getMaterial } from '@/lib/materials';
 import { UNITS, toMm, fromMm, clampNumber } from '@/lib/geometry';
+<<<<<<< HEAD
 import MaterialSwatch from '@/components/materials/MaterialSwatch';
+=======
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 
 function Field({ label, hint, children }) {
   return (
     <div>
+<<<<<<< HEAD
       <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">{label}</label>
       {children}
       {hint && <p className="text-[11px] text-muted-foreground mt-1">{hint}</p>}
+=======
+      <label className="block text-xs font-semibold text-[#64748B] uppercase tracking-wide mb-1.5">{label}</label>
+      {children}
+      {hint && <p className="text-[11px] text-[#94A3B8] mt-1">{hint}</p>}
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
     </div>
   );
 }
 
 const inputCls =
+<<<<<<< HEAD
   'w-full px-3 py-2 rounded-lg border border-border bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition';
 
 export default function SheetConfig() {
   const { material, setMaterial } = useProject();
   const u = material.unit || 'mm';
+=======
+  'w-full px-3 py-2 rounded-lg border border-[#E2E8E4] bg-white text-sm text-[#172B21] focus:outline-none focus:ring-2 focus:ring-[#16A34A]/30 focus:border-[#16A34A] transition';
+
+export default function SheetConfig() {
+  const { material, setMaterial } = useProject();
+  const u = material.unit;
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
   const conv = (mm) => Number(fromMm(mm, u).toFixed(u === 'mm' ? 0 : u === 'cm' ? 1 : 2));
 
   const setField = (field, valueMm) =>
@@ -37,6 +54,7 @@ export default function SheetConfig() {
   const matDef = getMaterial(material.type);
 
   return (
+<<<<<<< HEAD
     <div className="material-preserved bg-card rounded-2xl border border-border p-5">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-display font-bold text-foreground">Sheet setup</h3>
@@ -44,6 +62,12 @@ export default function SheetConfig() {
           <MaterialSwatch material={matDef} className="h-7 w-14 rounded-md" />
           <span className="text-xs font-medium text-primary-hover bg-card px-2.5 py-1 rounded-full">{matDef.name}</span>
         </div>
+=======
+    <div className="bg-white rounded-2xl border border-[#E2E8E4] p-5">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-display font-bold text-[#172B21]">Sheet setup</h3>
+        <span className="text-xs font-medium text-[#15803D] bg-[#DCFCE7] px-2.5 py-1 rounded-full">{matDef.name}</span>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -61,7 +85,11 @@ export default function SheetConfig() {
         <Field label="Unit">
           <select
             className={inputCls}
+<<<<<<< HEAD
             value={u}
+=======
+            value={material.unit}
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             onChange={(e) => setMaterial((prev) => ({ ...prev, unit: e.target.value }))}
           >
             {Object.entries(UNITS).map(([k, v]) => (
@@ -141,22 +169,37 @@ export default function SheetConfig() {
       </div>
 
       <div className="mt-4 flex items-center justify-between flex-wrap gap-3">
+<<<<<<< HEAD
         <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer">
           <input
             type="checkbox"
             className="w-4 h-4 rounded accent-primary"
+=======
+        <label className="flex items-center gap-2 text-sm text-[#172B21] cursor-pointer">
+          <input
+            type="checkbox"
+            className="w-4 h-4 rounded accent-[#16A34A]"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             checked={material.rotationAllowed}
             onChange={(e) => setMaterial((prev) => ({ ...prev, rotationAllowed: e.target.checked }))}
           />
           Allow 90° rotation of pieces
         </label>
         <div className="flex items-center gap-2 flex-wrap">
+<<<<<<< HEAD
           <span className="text-xs text-muted-foreground">Presets:</span>
+=======
+          <span className="text-xs text-[#64748B]">Presets:</span>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
           {matDef.commonSizes.map((s, i) => (
             <button
               key={i}
               onClick={() => applyPreset(s)}
+<<<<<<< HEAD
               className="text-xs px-2.5 py-1 rounded-full border border-border hover:border-primary hover:text-primary-hover text-muted-foreground transition"
+=======
+              className="text-xs px-2.5 py-1 rounded-full border border-[#E2E8E4] hover:border-[#16A34A] hover:text-[#15803D] text-[#64748B] transition"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             >
               {s.length}×{s.width}×{s.thickness}
             </button>

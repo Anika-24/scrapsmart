@@ -28,10 +28,16 @@ export default function ExportBar() {
     canvas.width = canvasW;
     canvas.height = canvasH;
     const ctx = canvas.getContext('2d');
+<<<<<<< HEAD
     const styles = getComputedStyle(document.documentElement);
     ctx.fillStyle = styles.getPropertyValue('--background').trim();
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = styles.getPropertyValue('--foreground').trim();
+=======
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#123D26';
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
     ctx.font = 'bold 28px Inter, sans-serif';
     ctx.fillText('ScrapSmart — Cutting Plan', 40, 44);
 
@@ -40,6 +46,7 @@ export default function ExportBar() {
       const row = Math.floor(i / cols);
       const ox = gap + col * (sheetW * scale + gap);
       const oy = 60 + gap + row * (sheetH * scale + gap);
+<<<<<<< HEAD
       ctx.fillStyle = styles.getPropertyValue('--card').trim();
       ctx.fillRect(ox, oy, sheet.width * scale, sheet.height * scale);
       ctx.strokeStyle = styles.getPropertyValue('--border').trim();
@@ -55,6 +62,23 @@ export default function ExportBar() {
         ctx.strokeRect(ox + p.x * scale, oy + p.y * scale, p.w * scale, p.h * scale);
       });
       ctx.fillStyle = styles.getPropertyValue('--foreground').trim();
+=======
+      ctx.fillStyle = '#E2E8E4';
+      ctx.fillRect(ox, oy, sheet.width * scale, sheet.height * scale);
+      ctx.strokeStyle = '#94A3B8';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(ox, oy, sheet.width * scale, sheet.height * scale);
+      sheet.placements.forEach((p) => {
+        ctx.fillStyle = p.color || '#16A34A';
+        ctx.globalAlpha = 0.85;
+        ctx.fillRect(ox + p.x * scale, oy + p.y * scale, p.w * scale, p.h * scale);
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(ox + p.x * scale, oy + p.y * scale, p.w * scale, p.h * scale);
+      });
+      ctx.fillStyle = '#64748B';
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       ctx.font = '16px Inter, sans-serif';
       ctx.fillText(`Sheet ${i + 1}`, ox, oy - 8);
     });
@@ -175,10 +199,17 @@ export default function ExportBar() {
 
   return (
     <div className="flex items-center gap-2">
+<<<<<<< HEAD
       <button onClick={exportPNG} disabled={!!busy} className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-background transition disabled:opacity-50">
         {busy === 'png' ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileImage className="w-4 h-4" />} PNG
       </button>
       <button onClick={exportPDF} disabled={!!busy} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary-accent text-secondary-accent-foreground text-sm font-semibold hover:bg-primary-hover transition disabled:opacity-50">
+=======
+      <button onClick={exportPNG} disabled={!!busy} className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[#E2E8E4] text-sm font-medium text-[#172B21] hover:bg-[#F4F7F5] transition disabled:opacity-50">
+        {busy === 'png' ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileImage className="w-4 h-4" />} PNG
+      </button>
+      <button onClick={exportPDF} disabled={!!busy} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#123D26] text-white text-sm font-semibold hover:bg-[#15803D] transition disabled:opacity-50">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
         {busy === 'pdf' ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileText className="w-4 h-4" />} PDF Report
       </button>
     </div>

@@ -11,12 +11,20 @@ import AnalyticsDashboard from '@/components/analytics/AnalyticsDashboard';
 import BeforeAfter from '@/components/visualization/BeforeAfter';
 import OptimizationAnimation from '@/components/visualization/OptimizationAnimation';
 import ExportBar from '@/components/visualization/ExportBar';
+<<<<<<< HEAD
+=======
+import { getMaterial } from '@/lib/materials';
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 import { areaInUnit } from '@/lib/geometry';
 
 export default function Home() {
   const {
     step, setStep, material, pieces, layout, baseline, optimizing, runOptimization,
+<<<<<<< HEAD
     selectedInstanceId, setSelectedInstanceId, matDef, loadDemo,
+=======
+    selectedInstanceId, setSelectedInstanceId, matDef,
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
   } = useProject();
 
   const totalPieces = pieces.reduce((s, p) => s + Math.max(1, Math.round(p.quantity || 1)), 0);
@@ -28,16 +36,25 @@ export default function Home() {
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
         <Stepper />
         <div className="flex items-center gap-2">
+<<<<<<< HEAD
           <button onClick={loadDemo} className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-secondary-accent text-secondary-accent-foreground text-sm font-semibold hover:bg-primary-hover transition">
             <PlayCircle className="w-4 h-4" /> View sample results
           </button>
           {step > 1 && (
             <button onClick={() => setStep(step - 1)} className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border text-sm font-medium text-muted-foreground hover:bg-card transition">
+=======
+          {step > 1 && (
+            <button onClick={() => setStep(step - 1)} className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#E2E8E4] text-sm font-medium text-[#64748B] hover:bg-white transition">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               <ArrowLeft className="w-4 h-4" /> Back
             </button>
           )}
           {step < 3 && (
+<<<<<<< HEAD
             <button onClick={() => setStep(step + 1)} className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary-hover transition">
+=======
+            <button onClick={() => setStep(step + 1)} className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#123D26] text-white text-sm font-semibold hover:bg-[#15803D] transition">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               Continue <ArrowRight className="w-4 h-4" />
             </button>
           )}
@@ -50,7 +67,11 @@ export default function Home() {
           <MaterialSelector />
           <SheetConfig />
           <div className="flex justify-end">
+<<<<<<< HEAD
             <button onClick={() => setStep(2)} className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary-hover transition">
+=======
+            <button onClick={() => setStep(2)} className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-[#16A34A] text-white text-sm font-semibold hover:bg-[#15803D] transition">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               Continue to Pieces <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -62,13 +83,21 @@ export default function Home() {
         <div className="space-y-5">
           <CutListTable />
           <div className="flex items-center justify-between flex-wrap gap-3">
+<<<<<<< HEAD
             <div className="text-sm text-muted-foreground">
+=======
+            <div className="text-sm text-[#64748B]">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               {totalPieces} piece{totalPieces !== 1 ? 's' : ''} · {areaInUnit(totalArea, u).toFixed(0)} {u === 'in' ? 'in²' : 'cm²'} required
             </div>
             <button
               onClick={() => setStep(3)}
               disabled={pieces.length === 0}
+<<<<<<< HEAD
               className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary-hover transition disabled:opacity-40"
+=======
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-[#16A34A] text-white text-sm font-semibold hover:bg-[#15803D] transition disabled:opacity-40"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             >
               Ready to Optimize <ArrowRight className="w-4 h-4" />
             </button>
@@ -79,6 +108,7 @@ export default function Home() {
       {/* Step 3 — Optimize */}
       {step === 3 && (
         <div className="space-y-5">
+<<<<<<< HEAD
           <div className="bg-card rounded-2xl border border-border p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-11 h-11 rounded-xl bg-card flex items-center justify-center">
@@ -105,17 +135,53 @@ export default function Home() {
               <div className="rounded-xl bg-background p-3">
                 <div className="text-xs text-muted-foreground">Kerf</div>
                 <div className="font-semibold text-foreground">{material.kerf}mm</div>
+=======
+          <div className="bg-white rounded-2xl border border-[#E2E8E4] p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#DCFCE7] flex items-center justify-center">
+                <Zap className="w-5 h-5 text-[#15803D]" />
+              </div>
+              <div>
+                <h2 className="font-display font-bold text-lg text-[#172B21]">Optimize your layout</h2>
+                <p className="text-sm text-[#64748B]">ScrapSmart runs a MaxRects Best-Short-Side-Fit packing algorithm on your pieces.</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+              <div className="rounded-xl bg-[#F4F7F5] p-3">
+                <div className="text-xs text-[#64748B]">Material</div>
+                <div className="font-semibold text-[#172B21]">{matDef.name}</div>
+              </div>
+              <div className="rounded-xl bg-[#F4F7F5] p-3">
+                <div className="text-xs text-[#64748B]">Sheet</div>
+                <div className="font-semibold text-[#172B21]">{material.sheetWidth}×{material.sheetHeight}mm</div>
+              </div>
+              <div className="rounded-xl bg-[#F4F7F5] p-3">
+                <div className="text-xs text-[#64748B]">Pieces</div>
+                <div className="font-semibold text-[#172B21]">{totalPieces}</div>
+              </div>
+              <div className="rounded-xl bg-[#F4F7F5] p-3">
+                <div className="text-xs text-[#64748B]">Kerf</div>
+                <div className="font-semibold text-[#172B21]">{material.kerf}mm</div>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               </div>
             </div>
             <button
               onClick={runOptimization}
               disabled={optimizing || pieces.length === 0}
+<<<<<<< HEAD
               className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-strong text-strong-foreground font-display font-bold text-base hover:bg-primary-hover transition disabled:opacity-50 shadow-lg shadow-strong/20"
+=======
+              className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#16A34A] text-white font-display font-bold text-base hover:bg-[#15803D] transition disabled:opacity-50 shadow-lg shadow-[#16A34A]/20"
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
             >
               {optimizing ? <Loader2 className="w-5 h-5 animate-spin" /> : <Zap className="w-5 h-5" />}
               {optimizing ? 'Optimizing…' : 'Optimize Layout'}
             </button>
+<<<<<<< HEAD
             <p className="text-xs text-muted-foreground text-center mt-2">
+=======
+            <p className="text-xs text-[#94A3B8] text-center mt-2">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               Result labeled "Best Layout Found" — not guaranteed globally optimal. Kerf reserves blade width; it does not by itself produce a saw sequence.
             </p>
           </div>
@@ -127,12 +193,20 @@ export default function Home() {
         <div className="space-y-5">
           {/* Validation banner */}
           {layout.validation && !layout.validation.valid && (
+<<<<<<< HEAD
             <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-card border border-border text-secondary-accent text-sm">
+=======
+            <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-[#DC2626] text-sm">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               <Layers className="w-4 h-4" /> Layout validation found issues: {layout.validation.errors.slice(0, 2).join('; ')}
             </div>
           )}
           {layout.unplaced.length > 0 && (
+<<<<<<< HEAD
             <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-card border border-border text-secondary-accent text-sm">
+=======
+            <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-700 text-sm">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               {layout.unplaced.length} piece(s) could not be placed: {layout.unplaced.map((p) => p.name).join(', ')}. Try more sheets or smaller pieces.
             </div>
           )}
@@ -140,16 +214,24 @@ export default function Home() {
           <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-5">
             <div className="space-y-5">
               <Workspace />
+<<<<<<< HEAD
               <div className="bg-card rounded-2xl border border-border p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <PlayCircle className="w-5 h-5 text-secondary-accent" />
                   <h3 className="font-display font-bold text-foreground">Placement animation</h3>
+=======
+              <div className="bg-white rounded-2xl border border-[#E2E8E4] p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <PlayCircle className="w-5 h-5 text-[#15803D]" />
+                  <h3 className="font-display font-bold text-[#172B21]">Placement animation</h3>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 </div>
                 <OptimizationAnimation height={360} />
               </div>
             </div>
             <div className="space-y-5">
               <PieceInspector />
+<<<<<<< HEAD
               <div className="bg-card rounded-2xl border border-border p-4">
                 <h3 className="font-display font-bold text-foreground mb-3">Export</h3>
                 <ExportBar />
@@ -160,6 +242,18 @@ export default function Home() {
                   <span className="font-semibold text-sm">Tip</span>
                 </div>
                 <p className="text-xs text-primary-foreground/80">Click any piece in the 2D or 3D view to inspect it. The selection stays in sync across both views.</p>
+=======
+              <div className="bg-white rounded-2xl border border-[#E2E8E4] p-4">
+                <h3 className="font-display font-bold text-[#172B21] mb-3">Export</h3>
+                <ExportBar />
+              </div>
+              <div className="bg-[#123D26] text-white rounded-2xl p-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Sparkles className="w-4 h-4 text-emerald-300" />
+                  <span className="font-semibold text-sm">Tip</span>
+                </div>
+                <p className="text-xs text-emerald-100/80">Click any piece in the 2D or 3D view to inspect it. The selection stays in sync across both views.</p>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               </div>
             </div>
           </div>
@@ -170,9 +264,15 @@ export default function Home() {
       )}
 
       {step === 4 && !layout && (
+<<<<<<< HEAD
         <div className="bg-card rounded-2xl border border-border p-10 text-center">
           <p className="text-muted-foreground">No layout yet. Go back and run the optimizer.</p>
           <button onClick={() => setStep(3)} className="mt-3 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold">Back to Optimize</button>
+=======
+        <div className="bg-white rounded-2xl border border-[#E2E8E4] p-10 text-center">
+          <p className="text-[#64748B]">No layout yet. Go back and run the optimizer.</p>
+          <button onClick={() => setStep(3)} className="mt-3 px-4 py-2 rounded-lg bg-[#16A34A] text-white text-sm font-semibold">Back to Optimize</button>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
         </div>
       )}
     </div>

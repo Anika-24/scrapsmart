@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+<<<<<<< HEAD
 import { X, Send, Trash2, Mic, Volume2, VolumeX, Bot } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { useProject } from '@/lib/ProjectContext';
+=======
+import { Sparkles, X, Send, Trash2, Mic, Volume2, VolumeX, Bot } from 'lucide-react';
+import { base44 } from '@/api/base44Client';
+import { useProject } from '@/lib/ProjectContext';
+import { getMaterial } from '@/lib/materials';
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
 
 const SUGGESTED = [
   'How can I reduce waste?',
@@ -115,7 +122,11 @@ export default function AIAssistant() {
       {/* Floating button */}
       <button
         onClick={() => setOpen((o) => !o)}
+<<<<<<< HEAD
         className={`fixed bottom-5 right-5 z-50 flex items-center gap-2 pl-3 pr-4 py-3 rounded-full shadow-xl transition-all ${open ? 'bg-secondary-accent text-secondary-accent-foreground' : 'bg-primary text-primary-foreground hover:bg-primary-hover'}`}
+=======
+        className={`fixed bottom-5 right-5 z-50 flex items-center gap-2 pl-3 pr-4 py-3 rounded-full shadow-xl transition-all ${open ? 'bg-[#123D26] text-white' : 'bg-[#16A34A] text-white hover:bg-[#15803D]'}`}
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
       >
         {open ? <X className="w-5 h-5" /> : <Bot className="w-5 h-5" />}
         {!open && <span className="font-semibold text-sm">ScrapSmart AI</span>}
@@ -123,14 +134,22 @@ export default function AIAssistant() {
 
       {/* Panel */}
       {open && (
+<<<<<<< HEAD
         <div className="fixed bottom-20 right-5 z-50 w-[380px] max-w-[calc(100vw-2.5rem)] h-[560px] max-h-[calc(100vh-7rem)] bg-card rounded-2xl border border-border shadow-2xl flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-secondary-accent to-primary text-primary-foreground px-4 py-3 flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-card/15 flex items-center justify-center">
+=======
+        <div className="fixed bottom-20 right-5 z-50 w-[380px] max-w-[calc(100vw-2.5rem)] h-[560px] max-h-[calc(100vh-7rem)] bg-white rounded-2xl border border-[#E2E8E4] shadow-2xl flex flex-col overflow-hidden">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-[#123D26] to-[#15803D] text-white px-4 py-3 flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
               <Bot className="w-5 h-5" />
             </div>
             <div className="flex-1">
               <div className="font-display font-bold text-sm">ScrapSmart AI</div>
+<<<<<<< HEAD
               <div className="text-[11px] text-primary-foreground/80">Your workshop copilot</div>
             </div>
             <button onClick={() => setMessages([messages[0]])} className="text-primary-foreground/70 hover:text-primary-foreground" title="Clear chat"><Trash2 className="w-4 h-4" /></button>
@@ -141,16 +160,35 @@ export default function AIAssistant() {
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-sm ${m.role === 'user' ? 'bg-primary text-primary-foreground rounded-br-sm' : m.error ? 'bg-card text-muted-foreground border border-border rounded-bl-sm' : 'bg-card text-foreground border border-border rounded-bl-sm'}`}>
+=======
+              <div className="text-[11px] text-emerald-100/80">Your workshop copilot</div>
+            </div>
+            <button onClick={() => setMessages([messages[0]])} className="text-white/70 hover:text-white" title="Clear chat"><Trash2 className="w-4 h-4" /></button>
+          </div>
+
+          {/* Messages */}
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#F4F7F5]">
+            {messages.map((m, i) => (
+              <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-sm ${m.role === 'user' ? 'bg-[#16A34A] text-white rounded-br-sm' : m.error ? 'bg-amber-50 text-amber-800 border border-amber-200 rounded-bl-sm' : 'bg-white text-[#172B21] border border-[#E2E8E4] rounded-bl-sm'}`}>
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                   {m.text}
                 </div>
               </div>
             ))}
             {loading && (
               <div className="flex justify-start">
+<<<<<<< HEAD
                 <div className="bg-card border border-border rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1">
                   <span className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0ms' }} />
                   <span className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '150ms' }} />
                   <span className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '300ms' }} />
+=======
+                <div className="bg-white border border-[#E2E8E4] rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1">
+                  <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '300ms' }} />
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 </div>
               </div>
             )}
@@ -160,7 +198,11 @@ export default function AIAssistant() {
           {messages.length <= 1 && (
             <div className="px-3 pb-2 flex flex-wrap gap-1.5">
               {SUGGESTED.map((s) => (
+<<<<<<< HEAD
               <button key={s} onClick={() => send(s)} className="text-[11px] px-2.5 py-1.5 rounded-full border border-border text-secondary-accent hover:bg-card transition text-left">
+=======
+                <button key={s} onClick={() => send(s)} className="text-[11px] px-2.5 py-1.5 rounded-full border border-[#E2E8E4] text-[#15803D] hover:bg-[#DCFCE7] transition text-left">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                   {s}
                 </button>
               ))}
@@ -168,6 +210,7 @@ export default function AIAssistant() {
           )}
 
           {/* Input */}
+<<<<<<< HEAD
           <div className="p-3 border-t border-border bg-card">
             <div className="flex items-center gap-1.5 mb-2">
               <button onClick={toggleMic} className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${listening ? 'bg-card text-secondary-accent animate-pulse' : 'text-muted-foreground hover:bg-background'}`} title="Voice input">
@@ -177,6 +220,17 @@ export default function AIAssistant() {
                 {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
               </button>
               <select value={lang} onChange={(e) => setLang(e.target.value)} className="text-xs border border-border rounded-lg px-2 py-1.5 text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30">
+=======
+          <div className="p-3 border-t border-[#E2E8E4] bg-white">
+            <div className="flex items-center gap-1.5 mb-2">
+              <button onClick={toggleMic} className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${listening ? 'bg-red-100 text-[#DC2626] animate-pulse' : 'text-[#64748B] hover:bg-[#F4F7F5]'}`} title="Voice input">
+                <Mic className="w-4 h-4" />
+              </button>
+              <button onClick={() => setMuted((m) => !m)} className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${muted ? 'text-[#94A3B8] hover:bg-[#F4F7F5]' : 'text-[#15803D] bg-[#DCFCE7]'}`} title={muted ? 'Unmute voice' : 'Mute voice'}>
+                {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              </button>
+              <select value={lang} onChange={(e) => setLang(e.target.value)} className="text-xs border border-[#E2E8E4] rounded-lg px-2 py-1.5 text-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#16A34A]/30">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 {LANGUAGES.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
               </select>
             </div>
@@ -186,9 +240,15 @@ export default function AIAssistant() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && send()}
                 placeholder="Ask about your layout…"
+<<<<<<< HEAD
                 className="flex-1 px-3 py-2.5 rounded-xl border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
               />
               <button onClick={() => send()} disabled={loading || !input.trim()} className="w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary-hover disabled:opacity-40">
+=======
+                className="flex-1 px-3 py-2.5 rounded-xl border border-[#E2E8E4] text-sm focus:outline-none focus:ring-2 focus:ring-[#16A34A]/30"
+              />
+              <button onClick={() => send()} disabled={loading || !input.trim()} className="w-10 h-10 rounded-xl bg-[#16A34A] text-white flex items-center justify-center hover:bg-[#15803D] disabled:opacity-40">
+>>>>>>> 89864b9d989ae3713185c0da5120642180b714ad
                 <Send className="w-4 h-4" />
               </button>
             </div>
