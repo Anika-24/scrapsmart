@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { X, Send, Trash2, Mic, Volume2, VolumeX, Bot, Square, Loader2 } from 'lucide-react';
+import { X, Send, Trash2, Mic, Volume2, VolumeX, Bot, Square, Loader2, Sparkles } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { useProject } from '@/lib/ProjectContext';
+import robotMascot from '@/assets/scrapsmart-robot.png';
 
 const SUGGESTED = [
   'How can I reduce waste?',
@@ -51,6 +52,7 @@ export default function AIAssistant({ open, onToggle, showLauncher = true }) {
   const [listening, setListening] = useState(false);
   const [transcribing, setTranscribing] = useState(false);
   const [speaking, setSpeaking] = useState(false);
+  const [showGreeting, setShowGreeting] = useState(true);
 
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
@@ -63,6 +65,12 @@ export default function AIAssistant({ open, onToggle, showLauncher = true }) {
   const loadingRef = useRef(false);
 
   useEffect(() => { loadingRef.current = loading; }, [loading]);
+
+  useEffect(() => {
+    if (!showLauncher) return undefined;
+    const timeout = window.setTimeout(() => setShowGreeting(false), 5000);
+    return () => window.clearTimeout(timeout);
+  }, [showLauncher]);
 
   // Auto-scroll
   useEffect(() => {
@@ -302,17 +310,24 @@ export default function AIAssistant({ open, onToggle, showLauncher = true }) {
 
   return (
     <>
-      {/* Floating launcher (bottom-right, so it never covers the top-right toolbar) */}
+      {/* Floating launcher at the lower-left */}
       {!open && showLauncher && (
-        <button
-          onClick={onToggle}
-          aria-label="Open ScrapSmart AI"
-          aria-expanded={false}
-          className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 flex items-center gap-2 pl-3 pr-4 py-3 rounded-full bg-[#16A34A] text-white shadow-xl transition hover:bg-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#16A34A]"
-        >
-          <Bot className="w-5 h-5" />
-          <span className="font-semibold text-sm">ScrapSmart AI</span>
-        </button>
+        <div className="fixed bottom-4 left-4 sm:bottom-5 sm:left-5 z-50 flex items-center gap-2">
+          <button
+            onClick={onToggle}
+            aria-label="Open AI assistant"
+            aria-expanded={false}
+            className="w-14 h-14 shrink-0 rounded-full border border-[#DCE8DE] bg-white p-1 shadow-xl transition hover:scale-105 hover:bg-[#F4F8F4] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#16A34A]"
+          >
+            <img src={robotMascot} alt="" className="w-full h-full object-contain" />
+          </button>
+          {showGreeting && (
+            <div role="status" className="relative max-w-[min(15rem,calc(100vw-6.5rem))] rounded-2xl border border-[#CFE0D5] bg-white px-3.5 py-2.5 text-xs font-medium leading-snug text-[#244B33] shadow-lg animate-in fade-in slide-in-from-left-2 duration-300 sm:text-sm">
+              <span className="absolute -left-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rotate-45 border-b border-l border-[#CFE0D5] bg-white" />
+              <span className="relative">Hey, I&apos;m your AI assistant. Need any help? Just ask me!</span>
+            </div>
+          )}
+        </div>
       )}
 
       {/* Panel: full-screen sheet on phones, anchored card from sm up */}
@@ -320,45 +335,55 @@ export default function AIAssistant({ open, onToggle, showLauncher = true }) {
         <div
           role="dialog"
           aria-label="ScrapSmart AI chat"
-          className="fixed z-50 inset-0 sm:inset-auto sm:bottom-5 sm:right-5 sm:w-[24rem] sm:h-[min(38rem,calc(100dvh-2.5rem))] bg-white sm:rounded-2xl sm:border border-[#E2E8E4] shadow-2xl flex flex-col overflow-hidden"
+          className="fixed z-50 inset-0 sm:inset-auto sm:bottom-5 sm:left-5 sm:w-[26rem] sm:h-[min(42rem,calc(100dvh-2.5rem))] bg-[#FCFEFC] sm:rounded-[1.25rem] sm:border border-[#CFE0D5] shadow-[0_24px_80px_-20px_rgba(18,61,38,0.42)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-300"
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#123D26] to-[#15803D] text-white px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))] flex items-center gap-3 shrink-0">
-            <div className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center">
-              <Bot className="w-5 h-5" />
+          <div className="relative overflow-hidden bg-[linear-gradient(110deg,#123D26_0%,#155E36_62%,#168344_100%)] text-white px-4 py-4 pt-[max(1rem,env(safe-area-inset-top))] flex items-center gap-3 shrink-0">
+            <div className="absolute inset-y-0 right-0 w-28 opacity-[0.12]" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 9px, #D9F99D 9px 10px)' }} />
+            <div className="relative w-12 h-12 shrink-0">
+              <img src={robotMascot} alt="" className="w-full h-full object-contain drop-shadow-[0_4px_4px_rgba(0,0,0,0.3)]" />
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="font-display font-bold text-sm">ScrapSmart AI</div>
-              <div className="text-[11px] text-emerald-100/80">Your workshop copilot</div>
+            <div className="relative flex-1 min-w-0">
+              <div className="font-display font-bold text-base leading-tight">ScrapSmart AI</div>
+              <div className="mt-1 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-100/90">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D9F99D] shadow-[0_0_8px_#D9F99D]" />
+                Workshop copilot · project aware
+              </div>
             </div>
             <button
               onClick={() => { stopSpeaking(); setMessages(INITIAL_MESSAGES); }}
-              className="p-1.5 text-white/70 hover:text-white" title="Clear chat" aria-label="Clear chat"
+              className="relative p-2 rounded-lg text-white/75 hover:text-white hover:bg-white/10 transition-colors" title="Clear chat" aria-label="Clear chat"
             >
               <Trash2 className="w-4 h-4" />
             </button>
-            <button onClick={onToggle} className="p-1.5 text-white/70 hover:text-white" title="Close chat" aria-label="Close chat">
+            <button onClick={onToggle} className="relative p-2 rounded-lg text-white/75 hover:text-white hover:bg-white/10 transition-colors" title="Close chat" aria-label="Close chat">
               <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Messages */}
-          <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3 bg-[#F4F7F5]" aria-live="polite">
+          <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto px-4 py-5 space-y-4 bg-[#F4F8F4]" aria-live="polite">
             {messages.map((m, i) => (
-              <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl text-sm whitespace-pre-wrap break-words ${m.role === 'user' ? 'bg-[#16A34A] text-white rounded-br-sm' : m.error ? 'bg-amber-50 text-amber-800 border border-amber-200 rounded-bl-sm' : 'bg-white text-[#172B21] border border-[#E2E8E4] rounded-bl-sm'}`}>
+              <div key={i} className={`flex items-end gap-2 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                {m.role !== 'user' && (
+                  <div className={`w-7 h-7 shrink-0 rounded-lg flex items-center justify-center ${m.error ? 'bg-amber-100 text-amber-700' : 'bg-[#DCEFE1] text-[#176238]'}`}>
+                    <Bot className="w-4 h-4" />
+                  </div>
+                )}
+                <div className={`max-w-[84%] px-3.5 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap break-words ${m.role === 'user' ? 'bg-[#176B3A] text-white rounded-br-sm shadow-sm' : m.error ? 'bg-amber-50 text-amber-900 border border-amber-200 rounded-bl-sm' : 'bg-white text-[#172B21] border border-[#E0EAE2] rounded-bl-sm shadow-[0_2px_8px_rgba(23,43,33,0.04)]'}`}>
                   {m.text}
                 </div>
               </div>
             ))}
             {(loading || transcribing) && (
-              <div className="flex justify-start">
-                <div className="bg-white border border-[#E2E8E4] rounded-2xl rounded-bl-sm px-4 py-3 flex items-center gap-2">
-                  {transcribing && <span className="text-xs text-[#64748B]">Transcribing…</span>}
+              <div className="flex items-end gap-2">
+                <div className="w-7 h-7 shrink-0 rounded-lg bg-[#DCEFE1] text-[#176238] flex items-center justify-center"><Bot className="w-4 h-4" /></div>
+                <div className="bg-white border border-[#E0EAE2] rounded-2xl rounded-bl-sm px-4 py-3 flex items-center gap-2 shadow-[0_2px_8px_rgba(23,43,33,0.04)]">
+                  {transcribing && <span className="text-xs text-[#64748B]">Transcribing</span>}
                   <span className="flex gap-1">
-                    <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A] animate-bounce" style={{ animationDelay: '300ms' }} />
                   </span>
                 </div>
               </div>
@@ -367,22 +392,25 @@ export default function AIAssistant({ open, onToggle, showLauncher = true }) {
 
           {/* Suggested prompts */}
           {messages.length <= 1 && (
-            <div className="px-3 pb-2 pt-2 flex flex-wrap gap-1.5 bg-[#F4F7F5] max-h-32 overflow-y-auto shrink-0">
+            <div className="px-4 pb-3 pt-1 bg-[#F4F8F4] max-h-32 overflow-y-auto shrink-0">
+              <div className="mb-2 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wide text-[#718278]"><Sparkles className="w-3 h-3 text-[#168344]" /> Try asking</div>
+              <div className="flex flex-wrap gap-1.5">
               {SUGGESTED.map((s) => (
-                <button key={s} onClick={() => send(s)} className="text-[11px] px-2.5 py-1.5 rounded-full border border-[#E2E8E4] bg-white text-[#15803D] hover:bg-[#DCFCE7] transition text-left">
+                <button key={s} onClick={() => send(s)} className="text-[11px] px-2.5 py-1.5 rounded-lg border border-[#DCE8DE] bg-white text-[#176238] hover:border-[#9CCBA8] hover:bg-[#EAF5EC] transition text-left">
                   {s}
                 </button>
               ))}
+              </div>
             </div>
           )}
 
           {/* Input */}
-          <div className="p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] border-t border-[#E2E8E4] bg-white shrink-0">
-            <div className="flex items-center gap-1.5 mb-2">
+          <div className="px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] border-t border-[#E0EAE2] bg-white shrink-0">
+            <div className="flex items-center gap-1.5 mb-2.5">
               <button
                 onClick={toggleMic}
                 disabled={micBusy}
-                className={`w-8 h-8 rounded-lg flex items-center justify-center transition disabled:opacity-40 ${listening ? 'bg-red-100 text-[#DC2626] animate-pulse' : 'text-[#64748B] hover:bg-[#F4F7F5]'}`}
+                className={`w-8 h-8 rounded-lg flex items-center justify-center transition disabled:opacity-40 ${listening ? 'bg-red-100 text-[#DC2626] animate-pulse' : 'text-[#647A6D] hover:bg-[#F1F6F2]'}`}
                 title={listening ? 'Stop and send' : 'Speak your question'}
                 aria-label={listening ? 'Stop voice input' : 'Start voice input'}
                 aria-pressed={listening}
@@ -392,7 +420,7 @@ export default function AIAssistant({ open, onToggle, showLauncher = true }) {
 
               <button
                 onClick={toggleMute}
-                className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${muted ? 'text-[#94A3B8] hover:bg-[#F4F7F5]' : 'text-[#15803D] bg-[#DCFCE7]'}`}
+                className={`w-8 h-8 rounded-lg flex items-center justify-center transition ${muted ? 'text-[#94A3B8] hover:bg-[#F1F6F2]' : 'text-[#176238] bg-[#E4F3E7]'}`}
                 title={muted ? 'Turn on spoken replies' : 'Turn off spoken replies'}
                 aria-label={muted ? 'Turn on spoken replies' : 'Turn off spoken replies'}
                 aria-pressed={!muted}
@@ -415,26 +443,26 @@ export default function AIAssistant({ open, onToggle, showLauncher = true }) {
                 onChange={(e) => setLang(e.target.value)}
                 aria-label="Chat language"
                 title="Language for questions and answers"
-                className="ml-auto text-xs border border-[#E2E8E4] rounded-lg px-2 py-1.5 text-[#64748B] bg-white focus:outline-none focus:ring-2 focus:ring-[#16A34A]/30"
+                className="ml-auto text-xs border border-[#E0EAE2] rounded-lg px-2.5 py-1.5 text-[#506458] bg-[#F8FAF8] focus:outline-none focus:ring-2 focus:ring-[#16A34A]/30"
               >
                 {LANGUAGES.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
               </select>
             </div>
 
-            <form onSubmit={(e) => { e.preventDefault(); send(); }} className="flex items-center gap-2">
+            <form onSubmit={(e) => { e.preventDefault(); send(); }} className="flex items-center gap-2 p-1.5 rounded-2xl bg-[#F4F8F4] border border-[#DCE8DE] focus-within:border-[#8DBF99] focus-within:ring-2 focus-within:ring-[#16A34A]/10 transition">
               <input
                 ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder={listening ? 'Listening…' : 'Ask about your layout…'}
+                placeholder={listening ? 'Listening…' : 'Ask about your cut plan…'}
                 aria-label="Ask ScrapSmart AI"
-                className="flex-1 min-w-0 px-3 py-2.5 rounded-xl border border-[#E2E8E4] text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#16A34A]/30"
+                className="flex-1 min-w-0 px-2 py-2.5 bg-transparent text-base sm:text-sm text-[#172B21] placeholder:text-[#85958A] focus:outline-none"
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
                 aria-label="Send message"
-                className="w-10 h-10 shrink-0 rounded-xl bg-[#16A34A] text-white flex items-center justify-center hover:bg-[#15803D] disabled:opacity-40"
+                className="w-10 h-10 shrink-0 rounded-xl bg-[#176B3A] text-white flex items-center justify-center hover:bg-[#123D26] disabled:opacity-40 transition-colors shadow-sm"
               >
                 <Send className="w-4 h-4" />
               </button>
