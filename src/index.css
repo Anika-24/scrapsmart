@@ -45,16 +45,17 @@
     --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
     --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    --sidebar-background: #2c4e37;
-    --sidebar-foreground: #efead8;
+    --sidebar-background: #f6f2e4;
+    --sidebar-foreground: #1e1e1e;
     --sidebar-primary: #2e7d7a;
     --sidebar-primary-foreground: #efead8;
-    --sidebar-accent: #2e7d7a;
+    --sidebar-accent: #2c4e37;
     --sidebar-accent-foreground: #efead8;
-    --sidebar-border: rgba(239, 234, 216, 0.15);
-    --sidebar-hover: rgba(239, 234, 216, 0.12);
-    --sidebar-footer: #1e1e1e;
-    --sidebar-footer-foreground: #efead8;
+    --sidebar-border: rgba(30, 30, 30, 0.10);
+    --sidebar-hover: #e4ddc4;
+    --sidebar-footer: #e4ddc4;
+    --sidebar-footer-foreground: #2c4e37;
+    --sidebar-toggle: #f6f2e4;
     --sidebar-ring: #2e7d7a;
   }
 
@@ -95,16 +96,17 @@
     --chart-3: #2c4e37;
     --chart-4: #2e7d7a;
     --chart-5: #1e1e1e;
-    --sidebar-background: #2c4e37;
+    --sidebar-background: #1a1a1a;
     --sidebar-foreground: #efead8;
     --sidebar-primary: #2e7d7a;
     --sidebar-primary-foreground: #efead8;
-    --sidebar-accent: #2e7d7a;
+    --sidebar-accent: #2c4e37;
     --sidebar-accent-foreground: #efead8;
-    --sidebar-border: rgba(239, 234, 216, 0.15);
-    --sidebar-hover: rgba(239, 234, 216, 0.12);
-    --sidebar-footer: #1e1e1e;
+    --sidebar-border: rgba(239, 234, 216, 0.12);
+    --sidebar-hover: #243428;
+    --sidebar-footer: #243428;
     --sidebar-footer-foreground: #efead8;
+    --sidebar-toggle: #272727;
     --sidebar-ring: #2e7d7a;
   }
 

@@ -132,13 +132,14 @@ export function ProjectProvider({ children }) {
     setPieces(EXAMPLE_PIECES.map((p) => ({ ...p })));
   }, []);
 
-  const saveProject = useCallback(() => {
-    const proj = { name: projectName, material, pieces, savedAt: new Date().toISOString() };
-    const updated = [proj, ...savedProjects].slice(0, 20);
+  const saveProject = useCallback((name) => {
+    const proj = { name, material, pieces, savedAt: new Date().toISOString() };
+    const updated = [proj, ...savedProjects.filter((saved) => saved.name?.trim().toLocaleLowerCase() !== name.trim().toLocaleLowerCase())].slice(0, 20);
+    setProjectName(name);
     setSavedProjects(updated);
     localStorage.setItem('scrapsmart_projects', JSON.stringify(updated));
     return proj;
-  }, [projectName, material, pieces, savedProjects]);
+  }, [material, pieces, savedProjects]);
 
   const openProject = useCallback((proj) => {
     setProjectName(proj.name);
